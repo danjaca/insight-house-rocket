@@ -75,12 +75,13 @@ Esse conjunto de dados contém casas vendidas entre Maio de 2014 e Maio de 2015.
 
 4-Exploração dos dados para resolver os problemas de negócio:
 
- *-Para a compra dos imóveis, obteve-se a mediana dos preços por região e se as condições do imóvel forem parecidas (no caso maior ou igual a 3) então estes seriam a indicação ideal para a compra.
- *-Para a venda, é interessante colocar os imóveis a venda no período do ano onde os preços se encontram mais altos incluindo algumas condições:
+ -Para a compra dos imóveis, obteve-se a mediana dos preços por região e se as condições do imóvel forem parecidas (no caso maior ou igual a 3) então estes seriam a indicação ideal para a compra.
  
-   *-Se o preço do imóvel (cujo as condições dele são boas) for menor que a média dos preços no melhor período do ano = é interessante, pelo                                 menos, equiparar o valor atual dele para o valor da média. 
+ -Para a venda, é interessante colocar os imóveis a venda no período do ano onde os preços se encontram mais altos incluindo algumas condições:
+ 
+   **Se o preço do imóvel (cujo as condições dele são boas) for menor que a média dos preços no melhor período do ano = é interessante, pelo                                 menos, equiparar o valor atual dele para o valor da média. 
    
-   *-Se o preço do imóvel for maior ou igual a média dos preços no melhor período do ano = há um incremento de 10% no valor (para obter um lucro                             mínimo)
+   **Se o preço do imóvel for maior ou igual a média dos preços no melhor período do ano = há um incremento de 10% no valor (para obter um lucro                             mínimo)
                          
 5- Avaliação de algumas hipóteses afim de encontrar possiveis insights de negócio
 6-Resultados obtidos
