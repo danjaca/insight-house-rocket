@@ -13,6 +13,7 @@ def get_data(path):
     data = pd.read_csv(path)
     data.drop_duplicates(subset=['id'], inplace=True, keep='first')
     data = data.reset_index(drop=True)
+    data['floors'] = data['floors'].astype('int64')
     
 
     ##agrupar por zipcode para analisar e criar a coluna median_by_zipcode! (primeiro padrao para compra)
@@ -30,6 +31,7 @@ def get_data(path):
     data['price_m2'] = data['price'] / data['sqft_lot']
     data['renovated'] = data['yr_renovated'].apply(lambda x: 'no' if x == 0 else 'yes')
     data['month'] = pd.to_datetime(data['date']).dt.month
+    data['year'] = pd.to_datetime(data['date']).dt.year
     data['season'] = data['month'].apply(lambda x: 'summer' if (x > 5) & (x < 8) else
     'spring' if (x > 2) & (x < 5) else
     'fall' if (x > 8) & (x < 12) else
@@ -250,42 +252,29 @@ def get_bars_two(data):
 
 def get_insights(data):
     st.subheader('3) INSIGHTS ')
-    insights = st.radio('', ('Basement insight', 'Floors insight', 'Renovated buildings insight', 'Profit zipcodes'))
+    insights = st.radio('', ('Basement insight', 'Floors insight', 'Renovated buildings insight', 'Profit zipcodes','More than 3 bedrooms insight','YoY Growth insight'))
     if insights == 'Basement insight':
         pd.set_option('display.float_format', lambda x: '%.2f' % x)
-        base_off = data.loc[data['sqft_basement'] == 0]
-        base_off_grouped = base_off[['price', 'zipcode']].groupby('zipcode').mean().reset_index()
-        base_on = data.loc[data['sqft_basement'] > 0]
-        base_on_grouped = base_on[['price', 'zipcode']].groupby('zipcode').mean().reset_index()
-        all_mean = pd.merge(base_off_grouped, base_on_grouped, on='zipcode', how='inner')
-        all_mean.rename(columns={'zipcode': 'zipcode', 'price_x': 'without_basement', 'price_y': 'with_basement'},
-                        inplace=True)
-        df = {'basement': ['0', '1'],
-              'mean_price': [all_mean['without_basement'].mean(), all_mean['with_basement'].mean()]}
-        df2 = pd.DataFrame(df)
-        fig = px.bar(df2, x="basement", y="mean_price", color_discrete_sequence=["lightgreen"])
+        df2 = data[['price','sqft_basement']].copy()
+        df2['sqft_basement'] = df2['sqft_basement'].apply(lambda x: '0' if x==0 else '1') 
+        base_aux = df2[['price','sqft_basement']].groupby('sqft_basement').mean().reset_index()
+        base_aux.rename(columns = {'sqft_basement' : 'basement'}, inplace = True)
+        fig = px.bar(base_aux, x="basement", y="price", color_discrete_sequence=["lightgreen"])
         fig.update_layout(width=1000, height=400, bargap=0.1)
         dataframe = st.checkbox('Display dataframe')
         if dataframe:
-            st.dataframe(all_mean, width=1000)
+            st.dataframe(base_aux, width=1000)
         st.plotly_chart(fig)
     elif insights == 'Floors insight':
         pd.set_option('display.float_format', lambda x: '%.2f' % x)
-        floors = data.loc[data['floors'] == 1]
-        floors_grouped = floors[['price', 'zipcode']].groupby('zipcode').mean().reset_index()
-        floors_high = data.loc[data['floors'] > 1]
-        floors_grouped_two = floors_high[['price', 'zipcode']].groupby('zipcode').mean().reset_index()
-        all_mean = pd.merge(floors_grouped, floors_grouped_two, on='zipcode', how='inner')
-        all_mean.rename(columns={'zipcode': 'zipcode', 'price_x': 'one_floor', 'price_y': 'two_or_more_floors'},
-                        inplace=True)
-        df = {'floors': ['1', '1>'],
-              'mean_price': [all_mean['one_floor'].mean(), all_mean['two_or_more_floors'].mean()]}
-        df2 = pd.DataFrame(df)
-        fig = px.bar(df2, x="floors", y="mean_price", color_discrete_sequence=["lightgreen"])
+        build = data[['floors','price']].copy()
+        build['floors'] = build['floors'].apply(lambda x: '1' if x==1 else '1>')
+        build_aux = build[['floors','price']].groupby('floors').mean().reset_index()
+        fig = px.bar(build_aux, x="floors", y="price", color_discrete_sequence=["lightgreen"])
         fig.update_layout(width=1000, height=400, bargap=0.1)
         dataframe = st.checkbox('Display dataframe')
         if dataframe:
-            st.dataframe(all_mean, width=1000)
+            st.dataframe(build_aux, width=1000)
         st.plotly_chart(fig)
 
     elif insights == 'Renovated buildings insight':
@@ -307,6 +296,28 @@ def get_insights(data):
         if dataframe:
             st.dataframe(all_mean, width=1000)
         st.plotly_chart(fig)
+    elif insights == 'More than 3 bedrooms insight':
+        h5 = data[['bedrooms','price']].copy()
+        h5['bedrooms'] = h5['bedrooms'].apply(lambda x: '>= 3' if x >=3 else '< 3')
+        h5_real= h5[['price','bedrooms']].groupby('bedrooms').mean().reset_index()
+        h5_real['growth'] = h5_real['price'].pct_change()
+        fig = px.bar(h5_real, x="bedrooms", y="price", color_discrete_sequence=["lightgreen"])
+        fig.update_layout(width=1000, height=400, bargap=0.1)
+        dataframe = st.checkbox('Display dataframe')
+        if dataframe:
+            st.dataframe(h5_real, width=1000)
+        st.plotly_chart(fig)
+    elif insights == 'YoY Growth insight':
+        h3 = data[['price','year']].loc[data['month'] == 5].copy()
+        h3 = h3[['price','year']].groupby('year').mean().reset_index()
+        h3['growth'] = h3['price'].pct_change()
+        fig = px.bar(h3,x='year',y='price',color_discrete_sequence=["lightgreen"])
+        fig.update_layout(width=1000, height=400, bargap=0.1)
+        dataframe = st.checkbox('Display dataframe')
+        if dataframe:
+            st.dataframe(h3, width=1000)
+        st.plotly_chart(fig)
+
     else:
         get_profit_info(data)
 
