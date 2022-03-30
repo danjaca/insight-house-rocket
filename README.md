@@ -1,11 +1,13 @@
-Aviso: O contexto para a realização deste projeto é fictício. A empresa, o contexto, o CEO, as perguntas de negócio foram criadas apenas para o desenvolvimento do projeto.
+Aviso: O contexto para a realização deste projeto é fictício. A empresa, o contexto, o CEO, as perguntas de negócio foram criadas apenas para o desenvolvimento do projeto. A finalidade é, além de adquirir experiência em resolver problemas, treinar métodos de exploração e visualização de dados usando a linguagem Python.
 
-Para acompanhar passo a passo da execucação do projeto acesse : [![image](https://img.shields.io/badge/Jupyter-F37626.svg?&style=for-the-badge&logo=Jupyter&logoColor=white)](https://nbviewer.org/github/danjaca/insight-house-rocket/blob/main/house-rocket-stepbystep.ipynb)
+Para acompanhar passo a passo da execucação do projeto -> [![image](https://img.shields.io/badge/Jupyter-F37626.svg?&style=for-the-badge&logo=Jupyter&logoColor=white)](https://nbviewer.org/github/danjaca/insight-house-rocket/blob/main/house-rocket-stepbystep.ipynb)
+
+Explore o projeto -> [![image](https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white)](https://kcdan.herokuapp.com/)
 
 ## House-rocket-insights
 A House Rocket é uma empresa focada na compra e venda de imóveis, e sua estratégia é encontrar imóveis com boas condições e com boa localização para revendê-los posteriormente à preços mais altos.
 
-Diante disso foi realizada uma análise onde diversos imóveis foram explorados e avaliados buscando o que poderia se tornar uma boa oportunidade para a empresa e alguns insights interessantes foram descobertos, algo que se tornará de extremo valor caso seja bem utilizado. Nenhum algoritimo de machine learning foi utilizado, os insights e recomendações forma feitas utilizando apenas a análise e exploração dos dados. Nesse processo buscou-se responder as perguntas abaixo: 
+Diante disso foi realizada uma análise onde diversos imóveis foram explorados e avaliados buscando o que poderia se tornar uma boa oportunidade para a empresa e alguns insights interessantes foram descobertos, algo que se tornará de extremo valor caso seja bem utilizado. Nenhum algoritmo de machine learning foi utilizado, os insights e recomendações forma feitas utilizando apenas a análise e exploração dos dados. Nesse processo buscou-se responder as perguntas abaixo: 
 
  1. Quais casas o CEO da House Rocket deveria comprar e por qual preço de compra?
  2. Uma vez a casa em posse da empresa, qual o melhor momento para vendê-las e qual seria o preço da venda?
