@@ -1,5 +1,7 @@
 Aviso: O contexto para a realização deste projeto é fictício. A empresa, o contexto, o CEO, as perguntas de negócio foram criadas apenas para o desenvolvimento do projeto.
 
+Para acompanhar passo a passo da execucação do projeto acesse : [![image](https://img.shields.io/badge/Jupyter-F37626.svg?&style=for-the-badge&logo=Jupyter&logoColor=white)](https://nbviewer.org/github/danjaca/insight-house-rocket/blob/main/house-rocket-stepbystep.ipynb)
+
 ## House-rocket-insights
 A House Rocket é uma empresa focada na compra e venda de imóveis, e sua estratégia é encontrar imóveis com boas condições e com boa localização para revendê-los posteriormente à preços mais altos.
 
@@ -58,22 +60,27 @@ Esse conjunto de dados contém casas vendidas entre Maio de 2014 e Maio de 2015.
 ## Premissas
 
 -A coluna 'price' foi considerada como o valor atual do imóvel, como se ele estivesse disponivel a venda.
+
 -Foi removido um imóvel que possuia supostamente 33 quartos ( possuia as mesmas caracteristicas que quaisquer outro imóvel como o tamanho do terreno, numero de andares) pois foi considerado como um Outlier
+
 -A avaliação de qualquer parâmetro foi feita a partir da região de cada imóvel ( zipcode ) para eliminarmos possiveis variáveis quanto a diferentes localizações (segurança, padrões sociais e etc)
 
 ## Planejamento da solução
 
-1-Coleta dos dados -> o dataset pode ser encontrado no site [kaggle](https://www.kaggle.com/harlfoxem/housesalesprediction) 
-2-Entedimento do negócio
-3-Limpeza e tratamento dos dados
-4-Exploração dos dados para resolver os problemas de negócio ->
+1-Coleta dos dados
 
- -Para a compra dos imóveis, obteve-se a mediana dos preços por região e se as condições do imóvel forem parecidas (no caso maior ou igual a 3) então estes seriam a indicação ideal para a compra.
- -Para a venda, é interessante colocar os imóveis a venda no período do ano onde os preços se encontram mais altos incluindo algumas condições:
+2-Entendimento do negócio
+
+3-Limpeza e tratamento dos dados
+
+4-Exploração dos dados para resolver os problemas de negócio:
+
+ *-Para a compra dos imóveis, obteve-se a mediana dos preços por região e se as condições do imóvel forem parecidas (no caso maior ou igual a 3) então estes seriam a indicação ideal para a compra.
+ *-Para a venda, é interessante colocar os imóveis a venda no período do ano onde os preços se encontram mais altos incluindo algumas condições:
  
-   -**Se o preço do imóvel (cujo as condições dele são boas) for menor que a média dos preços no melhor período do ano = é interessante, pelo                                 menos, equiparar o valor atual dele para o valor da média. 
+   *-Se o preço do imóvel (cujo as condições dele são boas) for menor que a média dos preços no melhor período do ano = é interessante, pelo                                 menos, equiparar o valor atual dele para o valor da média. 
    
-   -**Se o preço do imóvel for maior ou igual a média dos preços no melhor período do ano = há um incremento de 10% no valor (para obter um lucro                             mínimo)
+   *-Se o preço do imóvel for maior ou igual a média dos preços no melhor período do ano = há um incremento de 10% no valor (para obter um lucro                             mínimo)
                          
 5- Avaliação de algumas hipóteses afim de encontrar possiveis insights de negócio
 6-Resultados obtidos
@@ -84,19 +91,33 @@ Esse conjunto de dados contém casas vendidas entre Maio de 2014 e Maio de 2015.
 
 
 **1. Há um crescimento anual de 10% -> TRUE**
+
  Esta afirmação pode ser usada estratégicamente se o CEO da House Rocket decidir comprar os imóveis avaliados e aguardar o próximo ano para a venda.
  
  **2. Imóveis com mais de 3 quartos são 20% mais caros na média -> TRUE**
+ 
  Já que são mais de 40% mais caros, pode entrar em pauta uma reforma no imóvel visando adicionar mais quartos.
  
- **3. O zipcode mais lucrativo é o 98004 -> TRUE **
- Dar ênfase nesta região seria a melhor opção para começar a execução do projeto.
+ **3. Casas com mais de 1 andar são 20% mais caras na média -> TRUE**
  
- **4. Casas com mais de 1 andar são 20% mais caras na média -> TRUE**
  Mais outro insight onde poderia ser avaliado uma reforma mas agora visando a construção de outro andar.
  
- **5. Casas com reforma são 10% mais caras -> TRUE**
+ **4. Casas com reforma são 10% mais caras -> TRUE**
+ 
 Seria interessante realizar alguma reforma antes de colocar a casa para venda, provavelmente quanto mais expressiva melhor na hora de vender.
+ 
+ ## Resultados e conclusão
+ 
+ -O lucro total seria de U$ 1,437,571,653.0
+ 
+ -O zipcode mais lucrativo é o 98004
+ 
+ -No aplicativo é possivel ver qual estação do ano é a melhor para a venda em cada região acesse: 
+ 
+ -Os resultados financeiros encontrados são decorrencia do estudo e entendimento dos dados e podem ser maximizados caso esse estudo seja aplicado em todas as tomadas de decisão da empresa
+ 
+ -Como próximos passos, poderia ser implementado modelos de machine learning para estimar preços de acordo com as especificações de casa além de outros possiveis insights.
+ 
  
  
  
