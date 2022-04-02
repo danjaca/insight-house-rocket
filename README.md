@@ -61,7 +61,7 @@ Esse conjunto de dados contém casas vendidas entre Maio de 2014 e Maio de 2015.
 
 ## Premissas
 
--A coluna 'price' foi considerada como o valor atual do imóvel, como se ele estivesse disponivel a venda.
+-A coluna 'price' foi considerada como o valor atual do imóvel disponível para a venda.
 
 -Foi removido um imóvel que possuia supostamente 33 quartos ( possuia as mesmas caracteristicas que quaisquer outro imóvel como o tamanho do terreno, numero de andares) pois foi considerado como um Outlier
 
