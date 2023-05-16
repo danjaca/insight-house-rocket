@@ -115,10 +115,6 @@ Seria interessante realizar alguma reforma antes de colocar a casa para venda, p
  
  -O zipcode mais lucrativo é o 98004
  
- -No aplicativo é possivel ver qual estação do ano é a melhor para a venda em cada região acesse: 
- 
- -Os resultados financeiros encontrados são decorrencia do estudo e entendimento dos dados e podem ser maximizados caso esse estudo seja aplicado em todas as tomadas de decisão da empresa
- 
  -Como próximos passos, poderia ser implementado modelos de machine learning para estimar preços de acordo com as especificações de casa além de outros possiveis insights.
  
  
